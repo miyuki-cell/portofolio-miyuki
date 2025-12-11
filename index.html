@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miyuki | Portfolio</title>
+  <style>
+    :root {
+      --primary: #00ffff;
+      --accent: #6a11cb;
+      --bg-dark: #0b0c10;
+      --text-light: #eaeaea;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1b1b2f, #0b0c10 80%);
+      color: var(--text-light);
+      overflow-x: hidden;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("Gemini_Generated_Image_eaboddeaboddeabo.png");
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      filter: brightness(1.4) saturate(1.3);
+      z-index: -2;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(106, 17, 203, 0.2), transparent 70%);
+      z-index: -1;
+    }
+
+    /* Glowing particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: cyan;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: float 8s infinite ease-in-out;
+    }
+    .particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 1s; }
+    .particle:nth-child(2) { top: 40%; left: 80%; animation-delay: 2.5s; }
+    .particle:nth-child(3) { top: 75%; left: 60%; animation-delay: 4s; }
+    .particle:nth-child(4) { top: 90%; left: 25%; animation-delay: 5.5s; }
+    .particle:nth-child(5) { top: 10%; left: 50%; animation-delay: 7s; }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.5; }
+      50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 0.4; }
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+    .profile-photo {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid rgba(0, 255, 255, 0.6);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .profile-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(0, 255, 255, 0.8);
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #bfbfff;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(20, 20, 35, 0.6);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    section h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #00ffff, #6a11cb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .project-card {
+      background: rgba(30, 30, 60, 0.7);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+    }
+
+    /* Certificates carousel */
+    #certificates { 
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 22px;
+      background: rgba(20,20,35,0.55);
+      border-radius: 12px;
+      border: 1px solid rgba(106,17,203,0.12);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+    }
+    .cert-carousel-wrap {
+      position: relative;
+      margin-top: 12px;
+      overflow: hidden;
+      padding: 8px 4px;
+    }
+    .cert-carousel {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+    .cert-carousel::-webkit-scrollbar { height: 8px; }
+    .cert-carousel::-webkit-scrollbar-thumb {
+      background: rgba(0,255,255,0.12);
+      border-radius: 10px;
+    }
+    .cert-carousel { scrollbar-width: thin; scrollbar-color: rgba(0,255,255,0.12) transparent; }
+    .cert-small {
+      flex: 0 0 auto;
+      width: 180px;
+      background: rgba(30,30,60,0.65);
+      border: 1px solid rgba(0,255,255,0.08);
+      border-radius: 10px;
+      padding: 8px;
+      text-align: center;
+      scroll-snap-align: center;
+      transition: transform .25s ease, box-shadow .25s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.45);
+      cursor: grab;
+      user-select: none;
+    }
+    .cert-small:active { cursor: grabbing; transform: translateY(-6px); }
+    .cert-small img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .cert-small p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #dfecff;
+    }
+    #certificates .hint {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #9fb7ff;
+      opacity: 0.8;
+    }
+    .cert-small:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 8px 26px rgba(0,255,255,0.12);
+    }
+    @media (max-width: 520px) {
+      .cert-small { width: 140px; }
+      .cert-small img { height: 90px; }
+    }
+
+    /* Publication Section */
+    #publications {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(106, 17, 203, 0.25), rgba(37, 117, 252, 0.25));
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(37, 117, 252, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    #publications h2 {
+      color: #3ecfff;
+      font-weight: bold;
+      text-shadow: 0 0 12px rgba(37,117,252,0.8);
+      letter-spacing: 1px;
+    }
+    .publication-card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .publication-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(106, 17, 203, 0.6);
+    }
+    .pub-cover {
+      width: 160px;
+      height: auto;
+      border-radius: 10px;
+      margin-right: 20px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .pub-cover:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+    .pub-content {
+      flex: 1;
+      color: #fff;
+    }
+    .pub-content h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: #fff;
+    }
+    .pub-content p {
+      margin: 5px 0;
+      color: #e5e5e5;
+    }
+    .pub-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .pub-link:hover {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      transform: translateY(-2px);
+    }
+
+    /* Organisation Section */
+    .org-carousel-wrap {
+  position: relative;
+  margin-top: 12px;
+  overflow: hidden;
+  padding: 8px 4px;
+}
+
+.org-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+.org-carousel::-webkit-scrollbar { height: 8px; }
+.org-carousel::-webkit-scrollbar-thumb {
+  background: rgba(0,255,255,0.12);
+  border-radius: 10px;
+}
+
+.org-card {
+  flex: 0 0 auto;                /* Jangan shrink, fixed width */
+  width: 330px;
+  background: linear-gradient(135deg, #3a1f6b, #263b7a);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  box-shadow: 0px 8px 24px rgba(0,0,0,0.35);
+  color: #fff;
+  padding: 22px 18px 18px 18px;
+  text-align: left;
+  position: relative;
+  scroll-snap-align: center;
+  transition: 0.25s;
+}
+
+.org-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0px 12px 32px rgba(0,0,0,0.55);
+}
+
+.org-img {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
+.org-card h3 { margin: 32px 0 4px 0; font-size: 19px; font-weight: 600; }
+.org-meta { margin: 4px 0 12px; font-size: 14px; color: #e4d9ff; }
+.org-card ul { margin: 0; padding-left: 18px; font-size: 14px; color: #f7f7f7; }
+.org-card li { margin-bottom: 4px; }
+
+@media (max-width: 600px) {
+  .org-card { width: 210px; padding: 14px 8px;}
+}
+
+/*CV */
+.cv-download-btn {
+  display: inline-block;
+  margin-top: 18px;
+  color: #fff;
+  background: linear-gradient(90deg, #00ffff, #6a11cb);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 12px rgba(106,17,203,0.17);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.cv-download-btn:hover {
+  background: linear-gradient(90deg, #6a11cb, #00ffff);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0,255,255,0.19);
+}
+
+.stats-trigger {
+  margin: 40px auto;
+  padding: 14px 26px;
+  width: fit-content;
+  background: rgba(0, 255, 255, 0.15);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 10px;
+  color: #bfffff;
+  font-weight: 600;
+  cursor: pointer;
+  text-shadow: 0 0 12px #00ffff;
+  backdrop-filter: blur(6px);
+  transition: 0.3s ease;
+}
+
+.stats-trigger:hover {
+  background: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px #00ffff55;
+  transform: scale(1.05);
+}
+
+/* Trigger button */
+.holo-trigger {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.15);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: cyan;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.holo-trigger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.8);
+}
+
+/* The holographic card */
+.holo-card {
+  position: fixed;
+  bottom: 110px;
+  right: 40px;
+  width: 280px;
+   padding-top: 85px;
+  padding: 20px;
+  background: rgba(20, 20, 40, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3),
+              0 0 15px rgba(106, 17, 203, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  color: #eaffff;
+  opacity: 0;
+  transform: translateY(10px) scale(0.92);
+  pointer-events: none;
+  transition: all 0.35s ease;
+  z-index: 999;
+}
+
+/* Show card on hover */
+.holo-trigger:hover + .holo-card,
+.holo-card:hover {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Photo */
+.holo-photo {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+/* Text styling */
+.holo-card h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  background: linear-gradient(90deg, #00ffff, #6a11cb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.holo-sub {
+  margin-top: 12px;
+  font-size: 1.05rem;
+  color: #bfeaff;
+  font-weight: 600;
+}
+
+.holo-card ul {
+  margin: 4px 0 0 18px;
+  padding: 0;
+  font-size: 0.95rem;
+  line-height: 1.35rem;
+}
+
+.project-section {
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+.project-title {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  text-align: center;
+  background: linear-gradient(90deg, #00ffff, #6a11cb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Title style */
+.gallery-holo .project-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #00ffff, #ff00e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+/*gallery button*/
+.gallery-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.15);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: cyan;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.4);
+  transition: 0.3s ease;
+  z-index: 1000;
+}
+
+.gallery-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.8);
+}
+
+/*gallery panel*/
+.panel {
+  position: fixed;
+  transform: scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease;
+  z-index: 999;
+}
+
+.gallery-panel {
+  left: 50%;
+  top: 50%;
+  width: 85vw;
+  height: 85vh;
+  transform-origin: center;
+  border-radius: 16px;
+  border: 1.4px solid rgba(255,0,200,0.35);
+  background: rgba(15, 15, 30, 0.65);
+  backdrop-filter: blur(12px);
+  padding: 26px;
+  overflow-y: auto;
+}
+
+.gallery-panel.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: #ff9cff;
+  text-shadow: 0 0 15px #ff00dd;
+}
+
+
+.gallery-holo .project-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 25px;
+  background: linear-gradient(90deg, #00ffff, #ff00e1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.masonry-grid {
+  columns: 3;
+  column-gap: 18px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.masonry-grid .item {
+  break-inside: avoid;
+  margin-bottom: 18px;
+}
+
+.masonry-grid img {
+  width: 100%;
+  border-radius: 14px;
+  display: block;
+  border: 1px solid rgba(0, 255, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0,255,255,0.25),
+              0 0 28px rgba(106,17,203,0.25);
+  transition: 0.25s ease;
+  background: rgba(20,20,40,0.5);
+  backdrop-filter: blur(4px);
+}
+
+.masonry-grid img:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 25px rgba(0,255,255,0.45),
+    0 0 45px rgba(106,17,203,0.45);
+  border-color: rgba(0,255,255,0.5);
+}
+
+@media (max-width: 900px) {
+  .masonry-grid { columns: 2; }
+}
+@media (max-width: 600px) {
+  .masonry-grid { columns: 1; }
+}
+
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #ccc;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(20, 20, 30, 0.6);
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px var(--primary);
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Glowing particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <header>
+    <img src="WhatsApp Image 2025-11-02 at 21.22.09.jpeg" alt="Miyuki Portrait" class="profile-photo">
+    <h1>Hi, I'm Miyuki 👋</h1>
+    <p>Fresh Graduate | Aspiring Computer Scientist | AI Enthusiast</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm an introvert who enjoys collecting new experiences. Strangely, I love standing on stage and talking in front of people. Coding gives me a burst of dopamine — it’s just so satisfying. When things don’t go my way, I usually end up writing everything down in my diary. It helps me make peace with losing and keep going.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <h3>Computer-related projects</h3>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Portfolio Website</h3>
+        <p>A personal website built using HTML, CSS, and JS — designed with futuristic circuit vibes.</p>
+      </div>
+      <div class="project-card">
+        <h3>Arduino Quiz Buzzer</h3>
+        <p>An interactive quiz buzzer system using Arduino and timers.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Trigger Button -->
+<div class="holo-trigger gallery-btn" onclick="togglePanel('galleryPanel')">
+  🎨
+</div>
+
+<!-- Gallery Panel -->
+<div id="galleryPanel" class="panel gallery-panel">
+  <div class="close-btn" onclick="togglePanel('galleryPanel')">✖</div>
+
+  <section class="project-section gallery-holo">
+    <h2 class="project-title">Design & Commercial Projects</h2>
+
+    <div class="masonry-grid">
+      <div class="item"><img src="WhatsApp_Image_2025-11-24_at_16.43.51-removebg-preview.png" alt=""></div>
+      <div class="item"><img src="WhatsApp Image 2025-11-24 at 16.16.43.jpeg" alt=""></div>
+      <div class="item"><img src="poster tiara.jpeg" alt=""></div>
+      <div class="item"><img src="poster jinx.jpeg" alt=""></div>
+      <div class="item"><img src="img5.jpg" alt=""></div>
+      <div class="item"><img src="img6.jpg" alt=""></div>
+      <div class="item"><img src="img7.jpg" alt=""></div>
+      <div class="item"><img src="img8.jpg" alt=""></div>
+      <div class="item"><img src="img9.jpg" alt=""></div>
+      <div class="item"><img src="img10.jpg" alt=""></div>
+    </div>
+
+  </section>
+</div>
+
+
+
+<!-- Trigger button -->
+<div class="holo-trigger">★</div>
+
+<!-- Holographic Stats Card -->
+<div class="holo-card">
+  <img src="WhatsApp Image 2025-11-24 at 22.55.57.jpeg" alt="Profile Photo" class="holo-photo">
+
+  <h3>Miyuki — Stats</h3>
+
+  <div class="holo-sub">Core Attributes</div>
+  <ul>
+    <li>Creativity: ★★★★★</li>
+    <li>Problem Solving: ★★★★☆</li>
+    <li>Leadership: ★★★★★</li>
+    <li>Communication: ★★★★★</li>
+    <li>Public Speaking: ★★★★★</li>
+    <li>Coffee: ☆☆☆☆☆</li>
+    <li>Banana Milk: ★★★★★</li>
+  </ul>
+
+  <div class="holo-sub">Languages</div>
+  <ul>
+    <li>English, Indonesian, Arabic, Javanese</li>
+    <li>C++, HTML, CSS, JS</li>
+  </ul>
+
+  <div class="holo-sub">Social Energy</div>
+  <ul>
+    <li>0% (pls recharge later)</li>
+  </ul>
+</div>
+
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="cert-carousel-wrap">
+      <div class="cert-carousel" id="certCarousel">
+        <!-- Certificate Cards -->
+        <div class="cert-small"><img src="santri teladan.jpg" alt="Certificate 1"><p>Math - 2023</p></div>
+        <div class="cert-small"><img src="piag_Matematika - OSKN 2023-dikompresi_page-0001.jpg" alt="Certificate 2"><p>Math - 2023</p></div>
+        <div class="cert-small"><img src="biologi_page-0001.jpg" alt="Certificate 3"><p>Science - 2023</p></div>
+        <div class="cert-small"><img src="b inggris_page-0001.jpg" alt="Certificate 4"><p>English competition - 2023</p></div>
+        <div class="cert-small"><img src="biologi prov_page-0001.jpg" alt="Certificate 5"><p>Science - 2022</p></div>
+        <div class="cert-small"><img src="90B890F2-C5D1-40B9-9AAD-A157B594C096_1_201_a.jpeg" alt="Certificate 6"><p>Math - 2022</p></div>
+        <div class="cert-small"><img src="juara 2 MK.jpg" alt="Certificate 7"><p>2nd place of best student - 2021</p></div>
+        <div class="cert-small"><img src="CamScanner 10-12-2024 11.38_2.jpg" alt="Certificate 8"><p>The best student in whole cohort - 2024</p></div>
+        <div class="cert-small"><img src="Sertifikat Miyuki-1_page-0001.jpg" alt="Certificate 9"><p>Al-qur'an memorization - 2024</p></div>
+        <div class="cert-small"><img src="sertifikat pidato.jpg" alt="Certificate 10"><p>1st Public speaking competition - 2024</p></div>
+        <div class="cert-small"><img src="0E3E362F-2767-4A61-9BFF-E43A93F658A9_4_5005_c.jpeg" alt="Certificate 11"><p>2nd Public speaking competition - 2022</p></div>
+        <div class="cert-small"><img src="CamScanner 10-12-2024 11.38_3.jpg" alt="Certificate 12"><p>3rd Public speaking competition - 2023</p></div>
+        <div class="cert-small"><img src="Code A_page-0001.jpg" alt="Certificate 13"><p>Code A English conversation - 2024</p></div>
+        <div class="cert-small"><img src="Code B_page-0001.jpg" alt="Certificate 14"><p>Code B English conversation - 2024</p></div>
+        <div class="cert-small"><img src="top 50 sejuta cita.jpg" alt="Certificate 15"><p>Top 50 international essay - 2025</p></div>
+        <div class="cert-small"><img src="WhatsApp Image 2025-11-02 at 22.43.39.jpeg" alt="Certificate 16"><p>Random Coding - 2025</p></div>
+      </div>
+    </div>
+    <p class="hint">Drag or swipe → | Hover to pause</p>
+  </section>
+
+  <section id="Activity">
+  <h2>Activity</h2>
+  <div class="org-carousel-wrap">
+    <div class="org-carousel" id="orgCarousel">
+      <!-- Card 1 -->
+      <div class="org-card">
+        <img src="Aspire_logo-removebg-preview.png" alt="Logo" class="org-img">
+        <h3>Selected Participant of Aspire Leaders Program</h3>
+        <p class="org-meta">Harvard University 2025-Present</p>
+        <ul>
+          <li>Engaged in personal and professional development activities through guided self-reflection</li>
+          <li>Participated in live sessions led by global educators, discussing leadership, technology, and global issues</li>
+          <li>Completed leadership modules exploring how technology can be used to create social impact</li>
+          <li>Collaborated with peers from diverse backgrounds to analyze case studies and propose community-focused solutions</li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div class="org-card">
+        <img src="dicoding logo.jpeg" alt="Logo" class="org-img">
+        <h3>Active Participant - Artificial Intelligence Fundamentals</h3>
+        <p class="org-meta">Dicoding — 2025-Present</p>
+        <ul>
+          <li>Completed ~30% of the course covering machine learning and AI fundamentals</li>
+          <li>Studying basic ML concepts and how models are trained and evaluated</li>
+          <li>Practicing C++ fundamentals through algorithm tasks and small exercises</li>
+          <li>Learning about real-world AI applications and deployment workflows</li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div class="org-card">
+        <img src="logo_al_haris-removebg-preview.png" alt="Logo" class="org-img">
+        <h3>Head Coordinator</h3>
+        <p class="org-meta">Prom night drama production — 2024</p>
+        <ul>
+          <li>Led the planning and execution of the main drama performance for prom night</li>
+          <li>Coordinated a 20-person team (cast, crew, and technical staff)</li>
+          <li>Managed script development, rehearsal schedules, and stage-blocking plans</li>
+          <li>Oversaw timing, transitions, and technical cues to ensure a smooth performance</li>
+          <li>Collaborated with teachers and event leads to match the show with the prom theme</li>
+        </ul>
+      </div>
+      <!-- Card 4 -->
+      <div class="org-card">
+        <img src="logo_al_haris-removebg-preview.png" alt="Logo" class="org-img">
+        <h3>Head of Security Department</h3>
+        <p class="org-meta">Student Council — 2022-2024</p>
+        <ul>
+          <li>Oversaw school-wide discipline and daily security operations for the boarding school</li>
+          <li>Implemented a structured reporting workflow for incidents</li>
+          <li>Revised and improved about 50% of conduct/security rules</li>
+          <li>Monitored behavior and enforced guidelines in dormitory</li>
+        </ul>
+      </div>
+      <!-- Card 5 -->
+      <div class="org-card">
+        <img src="logo_al_haris-removebg-preview.png" alt="Logo" class="org-img">
+        <h3>Head of Event Committee</h3>
+        <p class="org-meta">Isra’ Mi’raj Celebration — 2023</p>
+        <ul>
+          <li>Led a 20-member student council team in organizing a full-school celebration event</li>
+          <li>Designed the event flow, timeline, and competition structure</li>
+          <li>Oversaw logistics, registration, technical preparation, and on-site execution</li>
+          <li>Managed decoration design and ensured the theme aligned with the event purpose</li>
+          <li>Supervised the entire event day for the whole school to keep every segment on schedule</li>
+        </ul>
+      </div>
+       <!-- Card 6 -->
+      <div class="org-card">
+        <img src="logo el wahyain.jpeg" alt="Logo" class="org-img">
+        <h3>Head of Language Department - Student Council</h3>
+        <p class="org-meta">Islamic Boarding School — 2021-2022</p>
+        <ul>
+          <li>Created 100% of the English and Arabic language rules, as the first-ever student council cohort</li>
+          <li>Implemented a full-school language system to ensure daily English and Arabic usage</li>
+          <li>Oversaw compliance across the entire student body and enforced disciplinary actions when necessary</li>
+          <li>Coordinated routine monitoring to maintain consistent language practice school-wide</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="hint">Drag or swipe → | Hover to pause</p>
+</section>
+
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="publication-card">
+      <img src="WhatsApp Image 2025-11-02 at 22.21.22.jpeg" alt="Hilang (lost) book cover" class="pub-cover">
+      <div class="pub-content">
+        <h3><i>Hilang</i></h3>
+        <p><strong>Published by:</strong> Jendela Edukasi (2024)</p>
+        <p>
+          A poetry collection exploring solitude, time, and resilience through quiet reflection and emotional honesty.
+        </p>
+        <a href="https://online.fliphtml5.com/wovhg/bvnp/" target="_blank" class="pub-link">Read more about the book →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:aisyah.miyuki2006@gmail.com">aisyah.miyuki2006@gmail.com</a></p>
+  <p>LinkedIn: <a href="https://www.linkedin.com/in/aisyah-miyuki-72699b344">View Profile</a></p>
+  <p>Instagram: <a href="https://www.instagram.com/ryozuke_myu?igsh=MTQ3dTJseDMwaTliOA==">Ryozuke_myu</a></p>
+  <a href="Miyuki's resume .pdf" download class="cv-download-btn">Download CV</a>
+</section>
+
+
+  <footer>
+    <p>&copy; 2025 Miyuki. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Certificate Carousel Script -->
+  <script>
+    (function() {
+      const carousel = document.getElementById('certCarousel');
+      let isDown = false, startX, scrollLeft, isAuto = true;
+      let autoTimer = null;
+      const AUTO_DELAY = 2200;
+      const STEP = 190;
+
+      carousel.addEventListener('pointerdown', (e) => {
+        isDown = true;
+        isAuto = false;
+        carousel.setPointerCapture(e.pointerId);
+        startX = e.clientX;
+        scrollLeft = carousel.scrollLeft;
+        carousel.style.scrollBehavior = 'auto';
+        clearInterval(autoTimer);
+      });
+      carousel.addEventListener('pointermove', (e) => {
+        if (!isDown) return; 
+        const x = e.clientX;
+        const walk = (startX - x);
+        carousel.scrollLeft = scrollLeft + walk;
+      });
+      carousel.addEventListener('pointerup', (e) => {
+        isDown = false;
+        isAuto = true;
+        carousel.releasePointerCapture(e.pointerId);
+        carousel.style.scrollBehavior = 'smooth';
+        startAuto();
+      });
+      carousel.addEventListener('pointercancel', () => {
+        isDown = false;
+        isAuto = true;
+        startAuto();
+      });
+      carousel.addEventListener('mouseenter', () => { isAuto = false; clearInterval(autoTimer); });
+      carousel.addEventListener('mouseleave', () => { isAuto = true; startAuto(); });
+      function startAuto(){
+        clearInterval(autoTimer);
+        if (!isAuto) return;
+        autoTimer = setInterval(() => {
+          const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+          if (Math.abs(carousel.scrollLeft - maxScroll) < 5) {
+            carousel.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            carousel.scrollBy({ left: STEP, behavior: 'smooth' });
+          }
+        }, AUTO_DELAY);
+      }
+      startAuto();
+      carousel.tabIndex = 0;
+      carousel.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') carousel.scrollBy({ left: STEP, behavior: 'smooth' });
+        if (e.key === 'ArrowLeft') carousel.scrollBy({ left: -STEP, behavior: 'smooth' });
+      });
+    })();
+    <!-- organisation script -->
+(function() {
+  const carousel = document.getElementById('orgCarousel');
+  let isDown = false, startX, scrollLeft, isAuto = true;
+  let autoTimer = null;
+  const AUTO_DELAY = 2400;
+  const STEP = 350; // sesuai card width+gap
+
+  carousel.addEventListener('pointerdown', (e) => {
+    isDown = true; isAuto = false;
+    carousel.setPointerCapture(e.pointerId);
+    startX = e.clientX; scrollLeft = carousel.scrollLeft;
+    carousel.style.scrollBehavior='auto'; clearInterval(autoTimer);
+  });
+  carousel.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    const x = e.clientX, walk = (startX - x);
+    carousel.scrollLeft = scrollLeft + walk;
+  });
+  carousel.addEventListener('pointerup', (e) => {
+    isDown = false; isAuto = true;
+    carousel.releasePointerCapture(e.pointerId);
+    carousel.style.scrollBehavior='smooth'; startAuto();
+  });
+  carousel.addEventListener('pointercancel', () => { isDown=false; isAuto=true; startAuto(); });
+  carousel.addEventListener('mouseenter', () => { isAuto=false; clearInterval(autoTimer); });
+  carousel.addEventListener('mouseleave', () => { isAuto=true; startAuto(); });
+  function startAuto(){
+    clearInterval(autoTimer);
+    if (!isAuto) return;
+    autoTimer = setInterval(() => {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      if (Math.abs(carousel.scrollLeft - maxScroll) < 5) {
+        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        carousel.scrollBy({left:STEP,behavior:'smooth'});
+      }
+    }, AUTO_DELAY);
+  }
+  startAuto();
+  carousel.tabIndex = 0;
+  carousel.addEventListener('keydown', (e) => {
+    if (e.key==='ArrowRight') carousel.scrollBy({left:STEP,behavior:'smooth'});
+    if (e.key==='ArrowLeft') carousel.scrollBy({left:-STEP,behavior:'smooth'});
+  });
+})();
+function togglePanel(id) {
+  const panel = document.getElementById(id);
+  panel.classList.toggle("active");
+}
+
+  </script>
+</body>
+</html>
