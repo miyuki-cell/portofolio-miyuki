@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miyuki | Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Glowing particles -->
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
+  <header>
+    <img src="WhatsApp Image 2025-11-02 at 21.22.09.jpeg" alt="Miyuki Portrait" class="profile-photo">
+    <h1>Hi, I'm Miyuki 👋</h1>
+    <p>Fresh Graduate | Aspiring Computer Scientist | AI Enthusiast</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm an introvert who enjoys collecting new experiences. Strangely, I love standing on stage and talking in front of people. Coding gives me a burst of dopamine — it’s just so satisfying. When things don't go my way, I usually end up writing everything down in my diary. It helps me make peace with losing and keep going.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <h3>Computer-related projects</h3>
+    <div class="projects">
+      <div class="project-card">
+        <h3>Personal Portfolio Website</h3>
+        <p>A responsive portfolio website built with HTML, CSS, and JavaScript.</p>
+      </div>
+      <div class="project-card">
+        <h3>IoT Logic Unit</h3>
+        <p>An interactive IoT Logic for understanding the basics of IoT systems.</p>
+        <a href="https://bagi2ilmuaditya.blogspot.com/2025/12/implementasi-gerbang-and-menggunakan-ic.html" target="_blank">View on Website</a>
+      </div>
+      <div class="project-card">
+        <h3>Multigame platform</h3>
+        <p>A platform that hosts multiple mini-games, built with C++.</p>
+        <a href="https://github.com/miyuki-cell/multigame-platform" target="_blank">View on GitHub</a>
+        <p class="disclaimer">Disclaimer, this projects can be run only on local environment</p>
+      </div>
+      <div class="project-card">
+        <h3>Integral visualisation website</h3>
+        <p>An interactive web application for visualizing integrals, built with HTML, CSS, and JavaScript.</p>
+        <a href=" https://miyuki-cell.github.io/proyek_math/" target="_blank">View on Website</a>
+      </div>
+      <div class="project-card">
+        <h3>Integral Visualisation</h3>
+        <p>An interactive web application for visualizing integrals, built with Python.</p>
+        <a href="https://github.com/miyuki-cell/math_proyek" target="_blank">View on GitHub</a>
+        <p class="disclaimer">Disclaimer, this projects can be run only on local environment</p>
+      </div>
+      <div class="project-card">
+        <h3>Website questionnaire</h3>
+        <p>A responsive website questionnaire built with HTML, CSS, and JavaScript.</p>
+        <a href="https://miyuki-cell.github.io/website-quesioner-sederhana/" target="_blank">View on Website</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="gallery-btn" onclick="togglePanel('galleryPanel')">
+    My Design
+  </div>
+
+  <div id="galleryPanel" class="panel gallery-panel">
+    <div class="close-btn" onclick="togglePanel('galleryPanel')">✖</div>
+
+    <section class="project-section gallery-holo">
+      <h2 class="project-title">Design & Commercial Projects</h2>
+
+      <div class="masonry-grid">
+        <div class="item"><img src="WhatsApp_Image_2025-11-24_at_16.43.51-removebg-preview.png" alt=""></div>
+        <div class="item"><img src="WhatsApp Image 2025-11-24 at 16.16.43.jpeg" alt=""></div>
+        <div class="item"><img src="poster tiara.jpeg" alt=""></div>
+        <div class="item"><img src="poster jinx.jpeg" alt=""></div>
+        <div class="item"><img src="Tangkapan Layar 2025-12-26 pukul 11.45.56 PM.png" alt=""></div>
+        <div class="item"><img src="autilearn.png" alt=""></div>
+        <div class="item"><img src="Tangkapan Layar 2025-12-26 pukul 11.53.30 PM.png" alt=""></div>
+        <div class="item"><img src="Tangkapan Layar 2025-12-26 pukul 11.59.25 PM.png" alt=""></div>
+        <div class="item"><img src="Tangkapan Layar 2025-12-26 pukul 12.00.39AM.png" alt=""></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Trigger button -->
+  <div class="holo-trigger">★</div>
+
+  <!-- Holographic Stats Card -->
+  <div class="holo-card">
+    <img src="WhatsApp Image 2025-11-24 at 22.55.57.jpeg" alt="Profile Photo" class="holo-photo">
+
+    <h3>Miyuki — Stats</h3>
+
+    <div class="holo-sub">Core Attributes</div>
+    <ul>
+      <li>Creativity: ★★★★★</li>
+      <li>Problem Solving: ★★★★☆</li>
+      <li>Leadership: ★★★★★</li>
+      <li>Communication: ★★★★★</li>
+      <li>Public Speaking: ★★★★★</li>
+      <li>Coffee: ☆☆☆☆☆</li>
+      <li>Banana Milk: ★★★★★</li>
+    </ul>
+
+    <div class="holo-sub">Languages</div>
+    <ul>
+      <li>English, Indonesian, Arabic, Javanese</li>
+      <li>C++, HTML, CSS, JS</li>
+    </ul>
+
+    <div class="holo-sub">Social Energy</div>
+    <ul>
+      <li>0% (pls recharge later)</li>
+    </ul>
+  </div>
+
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="cert-carousel-wrap">
+      <div class="cert-carousel" id="certCarousel">
+        <!-- Certificate Cards -->
+        <div class="cert-small"><img src="santri teladan.jpg" alt="Certificate 1"><p>Math - 2023</p></div>
+        <div class="cert-small"><img src="piag_Matematika - OSKN 2023-dikompresi_page-0001.jpg" alt="Certificate 2"><p>Math - 2023</p></div>
+        <div class="cert-small"><img src="biologi_page-0001.jpg" alt="Certificate 3"><p>Science - 2023</p></div>
+        <div class="cert-small"><img src="b inggris_page-0001.jpg" alt="Certificate 4"><p>English competition - 2023</p></div>
+        <div class="cert-small"><img src="biologi prov_page-0001.jpg" alt="Certificate 5"><p>Science - 2022</p></div>
+        <div class="cert-small"><img src="90B890F2-C5D1-40B9-9AAD-A157B594C096_1_201_a.jpeg" alt="Certificate 6"><p>Math - 2022</p></div>
+        <div class="cert-small"><img src="juara 2 MK.jpg" alt="Certificate 7"><p>2nd place of best student - 2021</p></div>
+        <div class="cert-small"><img src="CamScanner 10-12-2024 11.38_2.jpg" alt="Certificate 8"><p>The best student in whole cohort - 2024</p></div>
+        <div class="cert-small"><img src="Sertifikat Miyuki-1_page-0001.jpg" alt="Certificate 9"><p>Al-qur'an memorization - 2024</p></div>
+        <div class="cert-small"><img src="sertifikat pidato.jpg" alt="Certificate 10"><p>1st Public speaking competition - 2024</p></div>
+        <div class="cert-small"><img src="0E3E362F-2767-4A61-9BFF-E43A93F658A9_4_5005_c.jpeg" alt="Certificate 11"><p>2nd Public speaking competition - 2022</p></div>
+        <div class="cert-small"><img src="CamScanner 10-12-2024 11.38_3.jpg" alt="Certificate 12"><p>3rd Public speaking competition - 2023</p></div>
+        <div class="cert-small"><img src="Code A_page-0001.jpg" alt="Certificate 13"><p>Code A English conversation - 2024</p></div>
+        <div class="cert-small"><img src="Code B_page-0001.jpg" alt="Certificate 14"><p>Code B English conversation - 2024</p></div>
+        <div class="cert-small"><img src="top 50 sejuta cita.jpg" alt="Certificate 15"><p>Top 50 international essay - 2025</p></div>
+        <div class="cert-small"><img src="WhatsApp Image 2025-11-02 at 22.43.39.jpeg" alt="Certificate 16"><p>Random Coding - 2025</p></div>
+      </div>
+    </div>
+    <p class="hint">Drag or swipe → | Hover to pause</p>
+  </section>
+
+  <section id="Activity">
+    <h2>Activity</h2>
+    <div class="org-carousel-wrap">
+      <div class="org-carousel" id="orgCarousel">
+        <!-- Card 1 -->
+        <div class="org-card">
+          <img src="Aspire_logo-removebg-preview.png" alt="Logo" class="org-img">
+          <h3>Selected Participant of Aspire Leaders Program</h3>
+          <p class="org-meta">Harvard University 2025-Present</p>
+          <ul>
+            <li>Engaged in personal and professional development activities through guided self-reflection</li>
+            <li>Participated in live sessions led by global educators, discussing leadership, technology, and global issues</li>
+            <li>Completed leadership modules exploring how technology can be used to create social impact</li>
+            <li>Collaborated with peers from diverse backgrounds to analyze case studies and propose community-focused solutions</li>
+          </ul>
+        </div>
+        <!-- Card 2 -->
+        <div class="org-card">
+          <img src="dicoding logo.jpeg" alt="Logo" class="org-img">
+          <h3>Active Participant - Artificial Intelligence Fundamentals</h3>
+          <p class="org-meta">Dicoding — 2025-Present</p>
+          <ul>
+            <li>Completed ~30% of the course covering machine learning and AI fundamentals</li>
+            <li>Studying basic ML concepts and how models are trained and evaluated</li>
+            <li>Practicing C++ fundamentals through algorithm tasks and small exercises</li>
+            <li>Learning about real-world AI applications and deployment workflows</li>
+          </ul>
+        </div>
+        <!-- Card 3 -->
+        <div class="org-card">
+          <img src="logo_al_haris-removebg-preview.png" alt="Logo" class="org-img">
+          <h3>Head Coordinator</h3>
+          <p class="org-meta">Prom night drama production — 2024</p>
+          <ul>
+            <li>Led the planning and execution of the main drama performance for prom night</li>
+            <li>Coordinated a 20-person team (cast, crew, and technical staff)</li>
+            <li>Managed script development, rehearsal schedules, and stage-blocking plans</li>
+            <li>Oversaw timing, transitions, and technical cues to ensure a smooth performance</li>
+            <li>Collaborated with teachers and event leads to match the show with the prom theme</li>
+          </ul>
+        </div>
+        <!-- Card 4 -->
+        <div class="org-card">
+          <img src="logo_al_haris-removebg-preview.png" alt="Logo" class="org-img">
+          <h3>Head of Security Department</h3>
+          <p class="org-meta">Student Council — 2022-2024</p>
+          <ul>
+            <li>Oversaw school-wide discipline and daily security operations for the boarding school</li>
+            <li>Implemented a structured reporting workflow for incidents</li>
+            <li>Revised and improved about 50% of conduct/security rules</li>
+            <li>Monitored behavior and enforced guidelines in dormitory</li>
+          </ul>
+        </div>
+        <!-- Card 5 -->
+        <div class="org-card">
+          <img src="logo_al_haris-removebg-preview.png" alt="Logo" class="org-img">
+          <h3>Head of Event Committee</h3>
+          <p class="org-meta">Isra' Mi'raj Celebration — 2023</p>
+          <ul>
+            <li>Led a 20-member student council team in organizing a full-school celebration event</li>
+            <li>Designed the event flow, timeline, and competition structure</li>
+            <li>Oversaw logistics, registration, technical preparation, and on-site execution</li>
+            <li>Managed decoration design and ensured the theme aligned with the event purpose</li>
+            <li>Supervised the entire event day for the whole school to keep every segment on schedule</li>
+          </ul>
+        </div>
+        <!-- Card 6 -->
+        <div class="org-card">
+          <img src="logo el wahyain.jpeg" alt="Logo" class="org-img">
+          <h3>Head of Language Department - Student Council</h3>
+          <p class="org-meta">Islamic Boarding School — 2021-2022</p>
+          <ul>
+            <li>Created 100% of the English and Arabic language rules, as the first-ever student council cohort</li>
+            <li>Implemented a full-school language system to ensure daily English and Arabic usage</li>
+            <li>Oversaw compliance across the entire student body and enforced disciplinary actions when necessary</li>
+            <li>Coordinated routine monitoring to maintain consistent language practice school-wide</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="hint">Drag or swipe → | Hover to pause</p>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="publication-card">
+      <img src="WhatsApp Image 2025-11-02 at 22.21.22.jpeg" alt="Hilang (lost) book cover" class="pub-cover">
+      <div class="pub-content">
+        <h3><i>Hilang</i></h3>
+        <p><strong>Published by:</strong> Jendela Edukasi (2024)</p>
+        <p>
+          A poetry collection exploring solitude, time, and resilience through quiet reflection and emotional honesty.
+        </p>
+        <a href="https://online.fliphtml5.com/wovhg/bvnp/" target="_blank" class="pub-link">Read more about the book →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:aisyah.miyuki2006@gmail.com">aisyah.miyuki2006@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/aisyah-miyuki-72699b344">View Profile</a></p>
+    <p>Instagram: <a href="https://www.instagram.com/ryozuke_myu?igsh=MTQ3dTJseDMwaTliOA==">Ryozuke_myu</a></p>
+    <a href="Miyuki's resume .pdf" download class="cv-download-btn">Download CV</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Miyuki. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
